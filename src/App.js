@@ -22,12 +22,24 @@ class App extends React.Component {
         this.setState({todos: [this.todo(text), ...this.state.todos]});
     }
 
+    handleToggleCompleted(id) {
+
+        const todos = this.state.todos.map(todo => {
+            return todo.id === id ? {...todo, completed: !todo.completed} :
+                todo;
+        });
+
+        this.setState({todos});
+
+    }
+
     render() {
 
         return (
             <div>
-                <AddTodo onAddTodo={(text) => this.handleAddTodo(text)}/>
-                <Todos todos={this.state.todos}/>
+                <AddTodo onAddTodo={text => this.handleAddTodo(text)}/>
+                <Todos todos={this.state.todos} 
+                    onToggleCompleted={id => this.handleToggleCompleted(id)}/>
             </div>
         );
 
