@@ -1,20 +1,36 @@
 import React from 'react';
 
+import AddTodo from './AddTodo';
 import Todos from './Todos';
+
+let nextTodoId = 0;
 
 class App extends React.Component {
 
-    render() {
+    constructor(props) {
 
-        const todos = [
-            {id: 1, text: 'Learn JavaScript'},
-            {id: 2, text: 'Learn React'}];
+        super(props);
+        this.state = {todos: []};
+
+    }
+
+    todo(text) {
+        return {id: nextTodoId++, text};
+    }
+
+    handleAddTodo(text) {
+        this.setState({todos: [this.todo(text), ...this.state.todos]});
+    }
+
+    render() {
 
         return (
             <div>
-                <Todos todos={todos}/>
+                <AddTodo onAddTodo={(text) => this.handleAddTodo(text)}/>
+                <Todos todos={this.state.todos}/>
             </div>
         );
+
     }
 
 }
