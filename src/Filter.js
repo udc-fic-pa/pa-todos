@@ -2,17 +2,25 @@ import React from 'react';
 
 import * as filterTypes from './filterTypes';
 
-const Filter = ({filterType, onFilterClick}) => (
+class Filter extends React.PureComponent {
 
-    <div>
-        <button disabled={filterType === filterTypes.ALL} 
-            onClick={() => onFilterClick(filterTypes.ALL)}>All</button>
-        <button disabled={filterType === filterTypes.ACTIVE}
-            onClick={() => onFilterClick(filterTypes.ACTIVE)}>Active</button>
-        <button disabled={filterType === filterTypes.COMPLETED}
-            onClick={() => onFilterClick(filterTypes.COMPLETED)}>Completed</button>
-    </div>
+    render() {
 
-);
+        return(
+
+            <div>
+                <button disabled={this.props.filterType === filterTypes.ALL} 
+                    onClick={() => this.props.onFilterClick(filterTypes.ALL)}>All</button>
+                <button disabled={this.props.filterType === filterTypes.ACTIVE}
+                    onClick={() => this.props.onFilterClick(filterTypes.ACTIVE)}>Active</button>
+                <button disabled={this.props.filterType === filterTypes.COMPLETED}
+                    onClick={() => this.props.onFilterClick(filterTypes.COMPLETED)}>Completed</button>
+            </div>
+
+        );
+
+    }
+
+}
 
 export default Filter;

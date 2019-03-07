@@ -1,26 +1,30 @@
 import React from 'react';
 
-const AddTodo = ({onAddTodo}) => {
+class AddTodo extends React.PureComponent {
 
-    let input;
+    render() {
 
-    return (
+        let input;
 
-        <form onSubmit={(e) => {
-                e.preventDefault();
-                if (!input.value.trim()) {
-                    return;
-                }
-                onAddTodo(input.value.trim());
-                input.value = '';
-            }}>
+        return (
 
-            <input type="text" ref={node => input = node}/>
-            <button type="submit">Add</button>
+            <form onSubmit={(e) => {
+                    e.preventDefault();
+                    if (!input.value.trim()) {
+                        return;
+                    }
+                    this.props.onAddTodo(input.value.trim());
+                    input.value = '';
+                }}>
 
-        </form>
+                <input type="text" ref={node => input = node}/>
+                <button type="submit">Add</button>
 
-    );
+            </form>
+
+        );
+
+    }
 
 }
 

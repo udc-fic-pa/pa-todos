@@ -14,6 +14,10 @@ class App extends React.Component {
         super(props);
         this.state = {todos: [], filterType: filterTypes.ALL};
 
+        this.handleAddTodo = this.handleAddTodo.bind(this);
+        this.handleToggleCompleted = this.handleToggleCompleted.bind(this);
+        this.handleFilterClick = this.handleFilterClick.bind(this);
+
     }
 
     todo(text) {
@@ -58,11 +62,11 @@ class App extends React.Component {
 
         return (
             <div>
-                <AddTodo onAddTodo={text => this.handleAddTodo(text)}/>
+                <AddTodo onAddTodo={this.handleAddTodo}/>
                 <Todos todos={this.visibleTodos(this.state.todos, this.state.filterType)} 
-                    onToggleCompleted={id => this.handleToggleCompleted(id)}/>
+                    onToggleCompleted={this.handleToggleCompleted}/>
                 <Filter filterType={this.state.filterType} 
-                    onFilterClick={(filterType) => this.handleFilterClick(filterType)}/>
+                    onFilterClick={this.handleFilterClick}/>
             </div>
         );
 
