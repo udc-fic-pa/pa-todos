@@ -17,7 +17,7 @@ class App extends React.Component {
     }
 
     todo(text) {
-        return {id: nextTodoId++, text};
+        return {id: nextTodoId++, text, completed: false};
     }
 
     visibleTodos(todos, filterType) {
