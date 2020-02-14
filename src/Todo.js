@@ -1,18 +1,8 @@
 import React from 'react';
 
-class Todo extends React.PureComponent {
+const Todo = ({todo, onToggleCompleted}) => (
+    <li className={todo.completed ? 'completed' : ''} 
+        onClick={() => onToggleCompleted(todo.id)}>{todo.text}</li>
+);
 
-    render() {
-
-        const todo = this.props.todo;
-    
-        return (
-            <li className={todo.completed ? 'completed' : ''} 
-                onClick={() => this.props.onToggleCompleted(todo.id)}>{todo.text}</li>
-        );
-
-    }
-
-}
-
-export default Todo;
+export default React.memo(Todo);

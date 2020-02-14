@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import AddTodo from './AddTodo';
 import Todos from './Todos';
@@ -7,24 +7,16 @@ import * as filterTypes from './filterTypes';
 
 let nextTodoId = 0;
 
-class App extends React.Component {
+const App = () => {
 
-    constructor(props) {
+    const [todos, setTodos] = useState([]);
+    const [filterType, setFilterType] = useState(filterTypes.ALL);
 
-        super(props);
-        this.state = {todos: [], filterType: filterTypes.ALL};
-
-        this.handleAddTodo = this.handleAddTodo.bind(this);
-        this.handleToggleCompleted = this.handleToggleCompleted.bind(this);
-        this.handleFilterClick = this.handleFilterClick.bind(this);
-
+    const todo = text => {
+        return {id: nextTodoId++, text, completed: false}
     }
 
-    todo(text) {
-        return {id: nextTodoId++, text};
-    }
-
-    visibleTodos(todos, filterType) {
+    const visibleTodos = () => {
         
         switch(filterType) {
             case filterTypes.ALL:
@@ -39,38 +31,29 @@ class App extends React.Component {
 
     }
 
-    handleAddTodo(text) {
-        this.setState({todos: [this.todo(text), ...this.state.todos]});
-    }
+    const handleAddTodo = text  => setTodos([todo(text), ...todos]);
 
-    handleToggleCompleted(id) {
+    const handleToggleCompleted = id => {
 
-        const todos = this.state.todos.map(todo => {
+        const newTodos = todos.map(todo => {
             return todo.id === id ? {...todo, completed: !todo.completed} :
                 todo;
         });
 
-        this.setState({todos});
+        setTodos(newTodos);
 
     }
 
-    handleFilterClick(filterType) {
-        this.setState({filterType});
-    }
+    const handleFilterClick = filterType => setFilterType(filterType);
 
-    render() {
-
-        return (
-            <div>
-                <AddTodo onAddTodo={this.handleAddTodo}/>
-                <Todos todos={this.visibleTodos(this.state.todos, this.state.filterType)} 
-                    onToggleCompleted={this.handleToggleCompleted}/>
-                <Filter filterType={this.state.filterType} 
-                    onFilterClick={this.handleFilterClick}/>
-            </div>
-        );
-
-    }
+    return (
+        <div>
+            <AddTodo onAddTodo={handleAddTodo}/>
+            <Todos todos={visibleTodos()} 
+                onToggleCompleted={handleToggleCompleted}/>
+            <Filter filterType={filterType} onFilterClick={handleFilterClick}/>
+        </div>
+    );
 
 }
 
