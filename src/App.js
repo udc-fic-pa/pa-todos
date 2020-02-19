@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 
 import AddTodo from './AddTodo';
 import Todos from './Todos';
@@ -31,20 +31,23 @@ const App = () => {
 
     }
 
-    const handleAddTodo = text  => setTodos([todo(text), ...todos]);
+    const handleAddTodo = useCallback(
+        text  => setTodos(todos => [todo(text), ...todos]),
+        []
+    );
 
-    const handleToggleCompleted = id => {
+    const handleToggleCompleted = useCallback(
+        id => setTodos(todos => todos.map(todo => {
+                return todo.id === id ? {...todo, completed: !todo.completed} :
+                    todo;
+            })),
+        []
+    );
 
-        const newTodos = todos.map(todo => {
-            return todo.id === id ? {...todo, completed: !todo.completed} :
-                todo;
-        });
-
-        setTodos(newTodos);
-
-    }
-
-    const handleFilterClick = filterType => setFilterType(filterType);
+    const handleFilterClick = useCallback(
+        filterType => setFilterType(filterType), 
+        []
+    );
 
     return (
         <div>
