@@ -7,7 +7,9 @@ import './styles.css';
 
 /* Render application. */
 ReactDOM.render(
-    <App/>, 
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>,
     document.getElementById('root'));
 
 serviceWorker.register();
