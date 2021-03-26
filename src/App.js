@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import {useState, useCallback} from 'react';
 
 import AddTodo from './AddTodo';
 import Todos from './Todos';
