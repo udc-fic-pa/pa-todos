@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as filterTypes from './filterTypes';
 
 const Filter = ({filterType, onFilterClick}) => (
