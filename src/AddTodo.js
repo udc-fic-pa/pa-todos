@@ -4,6 +4,8 @@ const AddTodo = ({onAddTodo}) => {
 
     let input;
 
+    console.log("*** AddTodo");
+
     return (
 
         <form onSubmit={(e) => {

@@ -49,6 +49,8 @@ const App = () => {
         []
     );
 
+    console.log("*** App");
+
     return (
         <div>
             <AddTodo onAddTodo={handleAddTodo}/>
