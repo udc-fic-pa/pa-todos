@@ -1,21 +1,16 @@
-import React from 'react';
-
 import Todos from './Todos';
 
-class App extends React.Component {
+const App = () => {
 
-    render() {
+    const todos = [
+        {id: 1, text: 'Learn JavaScript'},
+        {id: 2, text: 'Learn React'}];
 
-        const todos = [
-            {id: 1, text: 'Learn JavaScript'},
-            {id: 2, text: 'Learn React'}];
-
-        return (
-            <div>
-                <Todos todos={todos}/>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <Todos todos={todos}/>
+        </div>
+    );    
 
 }
 
