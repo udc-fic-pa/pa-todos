@@ -3,8 +3,8 @@ import Todos from './Todos';
 const App = () => {
 
     const todos = [
-        {id: 1, text: 'Learn JavaScript'},
-        {id: 2, text: 'Learn React'}];
+        {id: 1, text: 'Learn React'},
+        {id: 2, text: 'Learn JavaScript'}];
 
     return (
         <div>
